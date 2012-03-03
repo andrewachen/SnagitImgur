@@ -33,3 +33,4 @@ Demo/**
 *.*sdf
 *.typemock
 lint.db
+/src/packages
