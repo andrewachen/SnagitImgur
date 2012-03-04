@@ -5,7 +5,7 @@ What is this?
 
 A plugin ("accessory") for [Snagit](http://www.techsmith.com/snagit.html) that allows sending captured images to online image sharing sites, such as [http://imgur.com](http://imgur.com).
 
-This plugin adds a button on the **Send** tab of the Image Editor, allowing you to upload the currently selected image to **Imgur**:
+This plugin adds a button on the **Share** (**Send** in Snagit v10) tab of the Image Editor, allowing you to upload the currently selected image to **Imgur**:
 
 ![Snagit Toolbar](http://i.imgur.com/JjRl7.png)
 
@@ -18,10 +18,7 @@ You can change the position of the **Imgur** button in the Editor Options.
 Download and installation instructions
 ======================================
 
-Download the file `SnagitImgur.snagacc` from the [Downloads](https://github.com/hmemcpy/SnagitImgur/downloads) page.
-
-Double-click the `SnagitImgur.snagacc` file, and it will be automatically installed in Snagit!
-
+Coming soon...
 
 What can it do now?
 -------------------
