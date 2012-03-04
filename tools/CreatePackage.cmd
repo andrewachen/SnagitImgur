@@ -1,0 +1,1 @@
+7zip\7za.exe -tzip a "..\build\SnagitImgur.snagacc" "..\build\Release\{EDA9F1DD-85B9-44F6-9D3C-125B2DD1109D}" 
