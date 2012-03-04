@@ -1,40 +1,25 @@
 What is this?
 -------------
 
-A plugin for [Snagit](http://www.techsmith.com/snagit.html) that allows sending captured images to online image sharing sites, such as [http://imgur.com](http://imgur.com).
+A plugin ("accessory") for [Snagit](http://www.techsmith.com/snagit.html) that allows sending captured images to online image sharing sites, such as [http://imgur.com](http://imgur.com).
 
 This plugin adds a button on the **Send** tab of the Image Editor, allowing you to upload the currently selected image to **Imgur**:
 
-![Snagit Toolbar](http://i.imgur.com/nBlgR.png)
+![Snagit Toolbar](http://i.imgur.com/JjRl7.png)
 
 It is also added to the main menu:
 
-![Snagit Menu](http://i.imgur.com/GKSz5.png)
+![Snagit Menu](http://i.imgur.com/ElZAZ.png)
 
 You can change the position of the **Imgur** button in the Editor Options.
 
-Installation instructions
-=========================
+Download and installation instructions
+======================================
 
-Please read carefully!
-----------------------
+Download the file `SnagitImgur.snagacc` from the [Downloads](https://github.com/hmemcpy/SnagitImgur/downloads) page.
 
-To install this plugin:
+Double-click the `SnagitImgur.snagacc` file, and it will be automatically installed in Snagit!
 
-1. Extract the contents of the zip file into:  
-
-    `%USERPROFILE%\AppData\Local\TechSmith\Snagit\Accessories`
-
-2. Go to the extracted directory:  
-
-    `%USERPROFILE%\AppData\Local\TechSmith\Snagit\Accessories\{EDA9F1DD-85B9-44F6-9D3C-125B2DD1109D}`
-
-    and run the file **register.bat**
-
-3. Restart Snagit (you should choose _Exit Snagit_ from the icon in the notification area)
-
-A proper installer will be available in the future!
----------------------------------------------------
 
 What can it do now?
 -------------------
@@ -53,6 +38,8 @@ Oh, many things:
 * Multiple image hosts support
 * Installer!
 * Many other cool stuff
+
+**The cool Snagit/Imgur logo generously provided by Stephen Kunkel**
 
 Please report any [issues](https://github.com/hmemcpy/SnagitImageShare/issues) that you might have!
 
