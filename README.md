@@ -1,6 +1,8 @@
 What is this?
 -------------
 
+![Snagit Imgur](http://i.imgur.com/g6aTS.png)
+
 A plugin ("accessory") for [Snagit](http://www.techsmith.com/snagit.html) that allows sending captured images to online image sharing sites, such as [http://imgur.com](http://imgur.com).
 
 This plugin adds a button on the **Send** tab of the Image Editor, allowing you to upload the currently selected image to **Imgur**:
@@ -39,7 +41,7 @@ Oh, many things:
 * Installer!
 * Many other cool stuff
 
-**The cool Snagit/Imgur logo generously provided by Stephen Kunkel**
+Special thanks **Stephen Kunkel** for creating the coolest Imgur/Snagit icon!
 
 Please report any [issues](https://github.com/hmemcpy/SnagitImageShare/issues) that you might have!
 
