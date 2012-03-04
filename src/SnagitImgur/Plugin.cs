@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 using SNAGITLib;
+
+using SnagitImgur.Core;
 
 namespace SnagitImgur
 {
@@ -16,7 +19,7 @@ namespace SnagitImgur
         {
             try
             {
-                this.snagitFacade.SaveImage();
+                snagitFacade.SaveImage();
             }
             catch (Exception e)
             {
@@ -33,9 +36,10 @@ namespace SnagitImgur
                 throw new InvalidOperationException("Unable to communicate with Snagit");
             }
 
-            var temporaryImageProvider = new TemporaryImageProvider(snagitHost);
             var imgurService = new ImgurService();
-            this.snagitFacade = new SnagitFacade(snagitHost, temporaryImageProvider, imgurService);
+            var uploadManager = new UploadManager(snagitHost as ISnagItAsyncOutput);
+            var temporaryImageProvider = new TemporaryImageProvider(snagitHost);
+            snagitFacade = new SnagitFacade(uploadManager, temporaryImageProvider, imgurService);
         }
     }
 }

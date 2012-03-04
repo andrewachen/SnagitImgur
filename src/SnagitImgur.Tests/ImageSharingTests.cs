@@ -8,6 +8,8 @@ namespace SnagitImgur.Tests
     [Story]
     public class ImageSharingTests
     {
+        // todo add tests
+
         [Test]
         public void Execute()
         {

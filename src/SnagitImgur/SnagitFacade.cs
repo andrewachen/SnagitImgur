@@ -1,32 +1,27 @@
-﻿namespace SnagitImgur
+﻿using SnagitImgur.Core;
+
+namespace SnagitImgur
 {
     public class SnagitFacade
     {
-        private readonly ITemporaryImageProvider imageProvider;
+        private readonly IUploadManager uploadManager;
+        private readonly ITemporaryImageProvider tempImageProvider;
         private readonly IImageSharingService sharingService;
 
-        public SnagitFacade(ITemporaryImageProvider imageProvider, IImageSharingService sharingService)
+        public SnagitFacade(IUploadManager uploadManager,
+                            ITemporaryImageProvider tempImageProvider, 
+                            IImageSharingService sharingService)
         {
-            this.imageProvider = imageProvider;
+            this.uploadManager = uploadManager;
+            this.tempImageProvider = tempImageProvider;
             this.sharingService = sharingService;
         }
 
         public void SaveImage()
         {
-
+            ITemporaryImage tempImage = tempImageProvider.CreateTemporaryImage();
+            
+            uploadManager.UploadImageAsync(tempImage, sharingService);
         }
-    }
-
-    public interface ITemporaryImageProvider
-    {
-    }
-
-    public interface IImageSharingService
-    {
-    }
-
-    public interface ITemporaryImage
-    {
-
     }
 }
