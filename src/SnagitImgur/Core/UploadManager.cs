@@ -23,21 +23,27 @@ namespace SnagitImgur.Core
         public void UploadImageAsync(ITemporaryImage tempImage, IImageSharingService service)
         {
             var backgroundWorker = new BackgroundWorker();
+            backgroundWorker.RunWorkerCompleted += OnUploadCompleted;
             backgroundWorker.DoWork += (sender, args) =>
             {
-                service.UploadCompleted += OnUploadCompleted;
-                service.UploadImageAsync(tempImage.Filename);
+                args.Result = service.UploadImage(tempImage.Filename);
             };
 
             snagitAsyncOutput.StartAsyncOutput();
             backgroundWorker.RunWorkerAsync();
         }
 
-        private void OnUploadCompleted(object sender, UploadEventArgs e)
+        private void OnUploadCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             snagitAsyncOutput.FinishAsyncOutput(true);
 
-            Process.Start(e.Uri.AbsoluteUri);
+            var result = e.Result as UploadResult;
+            if (result == null)
+            {
+                throw new InvalidOperationException("Unable to get upload result");
+            }
+
+            Process.Start(result.OriginalImage);
         }
     }
 }

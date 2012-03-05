@@ -53,6 +53,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ImageSharingTests.cs" />
+    <Compile Include="ImageUploadTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="snagitimgur.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SnagitImgur\SnagitImgur.csproj">
+      <Project>{6BE67E57-DD18-4E8C-B73E-3377DCD6BC3E}</Project>
+      <Name>SnagitImgur</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />

@@ -32,6 +32,16 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <DelaySign>true</DelaySign>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Interop.SNAGITLib">
       <HintPath>..\..\lib\Interop.SNAGITLib.dll</HintPath>
@@ -55,6 +65,7 @@
     <Compile Include="Core\TemporaryImage.cs" />
     <Compile Include="Core\UploadEventArgs.cs" />
     <Compile Include="Core\IUploadManager.cs" />
+    <Compile Include="Core\UploadResult.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>

@@ -4,8 +4,6 @@ namespace SnagitImgur.Core
 {
     public interface IImageSharingService
     {
-        event EventHandler<UploadEventArgs> UploadCompleted;
-
-        void UploadImageAsync(string fileName);
+        UploadResult UploadImage(string fileName);
     }
 }
