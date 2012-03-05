@@ -18,7 +18,19 @@ You can change the position of the **Imgur** button in the Editor Options.
 Download and installation instructions
 ======================================
 
-Coming soon...
+1. Download the zip file `SnagitImgur.zip` from the [Downloads](https://github.com/hmemcpy/SnagitImgur/downloads) page.
+
+2. Extract the contents of the zip file into:  
+    `%USERPROFILE%\AppData\Local\TechSmith\Snagit\Accessories`
+
+3. Go to the extracted directory:  
+    `%USERPROFILE%\AppData\Local\TechSmith\Snagit\Accessories\{EDA9F1DD-85B9-44F6-9D3C-125B2DD1109D}`
+    and run the file **register.bat**
+
+4. Restart Snagit (you should choose _Exit Snagit_ from the icon in the notification area)
+
+A proper installer will be available in the future!
+----------------------------------------------------
 
 What can it do now?
 -------------------
