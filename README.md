@@ -3,9 +3,9 @@ What is this?
 
 ![Snagit Imgur](http://i.imgur.com/g6aTS.png)
 
-A plugin ("accessory") for [TechSmith® Snagit®](http://www.techsmith.com/snagit.html) that allows sending captured images to online image sharing sites, such as [http://imgur.com](http://imgur.com).
+A plugin ("accessory") for [TechSmithï¿½ Snagitï¿½](http://www.techsmith.com/snagit.html) that allows sending captured images to online image sharing sites, such as [http://imgur.com](http://imgur.com).
 
-This plugin adds a button on the **Share** (**Send** in Snagit® v10) tab of the Image Editor, allowing you to upload the currently selected image to **Imgur**:
+This plugin adds a button on the **Share** (**Send** in Snagitï¿½ v10) tab of the Image Editor, allowing you to upload the currently selected image to **Imgur**:
 
 ![Snagit Toolbar](http://i.imgur.com/JjRl7.png)
 
@@ -59,6 +59,6 @@ Please report any [issues](https://github.com/hmemcpy/SnagitImgur/issues) that y
 
 Miscellaneous
 -------------
-Snagit is a registered trademark of TechSmith Corporation, Copyright © 1999–2012. The author of this plugin has no affiliation with TechSmith Corporation, nor is this plugin endorsed or supported in any shape or form by the TechSmith. The source code for the plugin is licensed under the BSD license, the terms of which are specified in the file `License.txt`.
+SnagitÂ® is a registered trademark of TechSmithÂ® Corporation, Copyright ï¿½ 1999ï¿½2012. The author of this plugin has no affiliation with TechSmith Corporation, nor is this plugin endorsed or supported in any shape or form by the TechSmith. The source code for the plugin is licensed under the BSD license, the terms of which are specified in the file `License.txt`.
 
 Thanks!
