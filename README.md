@@ -18,7 +18,7 @@ You can change the position of the **Imgur** button in the Editor Options.
 Download and installation instructions
 ======================================
 
-1. Download the zip file `SnagitImgur.zip` from the [Downloads](https://github.com/hmemcpy/SnagitImgur/downloads) page.
+1. Download the zip file `SnagitImgur0.1.1.zip` from the [Downloads](https://github.com/hmemcpy/SnagitImgur/downloads) page.
 
 2. Extract the contents of the zip file into:
 

@@ -64,7 +64,6 @@
     <Compile Include="Core\ITemporaryImageProvider.cs" />
     <Compile Include="Core\TemporaryImage.cs" />
     <Compile Include="Core\UploadEventArgs.cs" />
-    <Compile Include="Core\IUploadManager.cs" />
     <Compile Include="Core\UploadResult.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>

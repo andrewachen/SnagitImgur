@@ -1,0 +1,24 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+	<PropertyGroup>
+		<SolutionDirectory>.\</SolutionDirectory>
+		<BuildDirectory>$(SolutionDirectory)..\build</BuildDirectory>
+	</PropertyGroup>
+
+	 <Target Name="QuickBuild">
+     <MSBuild Projects="SnagitImgur.sln" Properties="Configuration=Release;Platform=Any CPU" />
+   </Target>
+   
+   <Target Name="Build" DependsOnTargets="QuickBuild">
+     <CallTarget Targets="ILMerge" />
+   </Target>
+   
+   <Target Name="ILMerge">
+    <MakeDir Directories="$(BuildDirectory)\Merged" />
+    <Exec Command="tools\ilmerge\ILMerge.exe /keyfile:SnagitImgur.snk /lib:&quot;$(BuildDirectory)\Release&quot; /t:library /v2 /out:$(BuildDirectory)\Merged\SnagitImgur.dll $(BuildDirectory)\Release\SnagitImgur.dll $(BuildDirectory)\Release\Interop.SNAGITLib.dll" />
+    <Copy SourceFiles="$(BuildDirectory)\Merged\SnagitImgur.dll" DestinationFiles="$(BuildDirectory)\Release\SnagitImgur.dll" />
+    <Copy SourceFiles="$(BuildDirectory)\Merged\SnagitImgur.pdb" DestinationFiles="$(BuildDirectory)\Release\SnagitImgur.pdb" />
+    <Delete Files="$(BuildDirectory)\Release\Interop.SNAGITLib.dll" />
+  </Target>
+   	
+</Project>
