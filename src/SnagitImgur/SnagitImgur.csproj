@@ -76,7 +76,6 @@
     <Compile Include="Plugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Core\TemporaryImageProvider.cs" />
-    <Compile Include="Core\UploadManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="imgur.com.ico">

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
@@ -11,15 +10,20 @@ namespace SnagitImgur
 {
     [ClassInterface(ClassInterfaceType.None)]
     [Guid("681D1A5C-A78F-4D27-86A2-A07AAC89B8FE")]
-    public class Plugin : MarshalByRefObject, IComponentInitialize, IOutput, IComponentTerminate
+    public class Plugin : MarshalByRefObject, IComponentInitialize, IOutput
     {
         private SnagitFacade snagitFacade;
 
         public void Output()
         {
+            Action saveImageAction = this.snagitFacade.SaveImage;
             try
             {
-                snagitFacade.SaveImage();
+                IAsyncResult result = saveImageAction.BeginInvoke(null, null);
+                if (result.AsyncWaitHandle.WaitOne(TimeSpan.FromSeconds(30)))
+                {
+                    saveImageAction.EndInvoke(result);
+                }
             }
             catch (Exception e)
             {
@@ -39,22 +43,13 @@ namespace SnagitImgur
                 }
 
                 var imgurService = new ImgurService();
-                var uploadManager = new UploadManager(snagitHost as ISnagItAsyncOutput);
                 var temporaryImageProvider = new TemporaryImageProvider(snagitHost);
-                snagitFacade = new SnagitFacade(uploadManager, temporaryImageProvider, imgurService);
+                snagitFacade = new SnagitFacade(snagitHost, temporaryImageProvider, imgurService);
             }
             catch (Exception e)
             {
                 // todo temp code, replace with proper reporting!
                 MessageBox.Show("An unandled exception occured:\n" + e);
-            }
-        }
-
-        public void TerminateComponent(componentTerminateType termType)
-        {
-            if (snagitFacade != null)
-            {
-                snagitFacade.Dispose();
             }
         }
     }

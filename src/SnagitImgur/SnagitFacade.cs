@@ -1,52 +1,50 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Diagnostics;
+using SNAGITLib;
 using SnagitImgur.Core;
 
 namespace SnagitImgur
 {
-    public class SnagitFacade : IDisposable
+    public class SnagitFacade
     {
-        private bool disposed;
-        private readonly IUploadManager uploadManager;
+        private readonly ISnagItAsyncOutput asyncOutput;
         private readonly ITemporaryImageProvider tempImageProvider;
-        private readonly IImageSharingService sharingService;
+        private readonly IImageSharingService imageService;
 
-        private readonly List<ITemporaryImage> temporaryImages = new List<ITemporaryImage>();
-
-        public SnagitFacade(IUploadManager uploadManager,
-                            ITemporaryImageProvider tempImageProvider, 
-                            IImageSharingService sharingService)
+        public SnagitFacade(ISnagIt snagitHost, ITemporaryImageProvider tempImageProvider, IImageSharingService imageService)
         {
-            this.uploadManager = uploadManager;
+            this.asyncOutput = snagitHost as ISnagItAsyncOutput;
             this.tempImageProvider = tempImageProvider;
-            this.sharingService = sharingService;
+            this.imageService = imageService;
 
         }
 
         public void SaveImage()
         {
-            ITemporaryImage tempImage = tempImageProvider.CreateTemporaryImage();
-            temporaryImages.Add(tempImage);
-            
-            uploadManager.UploadImageAsync(tempImage, sharingService);
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-        }
-
-        private void Dispose(bool disposing)
-        {
-            if (disposing)
+            using (var tempImage = tempImageProvider.CreateTemporaryImage())
             {
-                if (!disposed)
+                if (asyncOutput != null)
                 {
-                    temporaryImages.ForEach(image => image.Dispose());
+                    // supported in Snagit v11
+                    asyncOutput.StartAsyncOutput();
                 }
+                try
+                {
+                    var result = imageService.UploadImage(tempImage.Filename);
 
-                disposed = true;
-                GC.SuppressFinalize(this);
+                    if (!string.IsNullOrEmpty(result.OriginalImage))
+                    {
+                        Process.Start(result.OriginalImage);
+                    }
+                }
+                finally
+                {
+                    if (asyncOutput != null)
+                    {
+                        // supported in Snagit v11
+                        asyncOutput.FinishAsyncOutput(true);
+                    }
+                }
             }
         }
     }
