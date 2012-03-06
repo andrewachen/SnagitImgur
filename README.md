@@ -59,6 +59,6 @@ Please report any [issues](https://github.com/hmemcpy/SnagitImgur/issues) that y
 
 Miscellaneous
 -------------
-Snagit is a registered trademark of TechSmith Corporation, Copyright © 1999–2012. The author of this plugin has no affiliation with TechSmith Corporation, nor is this plugin endorsed or supported in any shape or form by the TechSmith. The source code for the plugin is licensed under the BSD license, the terms of which are specified in the file `License.txt`.
+Snagit® is a registered trademark of TechSmith Corporation®, Copyright © 1999–2012. The author of this plugin has no affiliation with TechSmith Corporation, nor is this plugin endorsed or supported in any shape or form by the TechSmith® Corporation. The source code for the plugin is licensed under the BSD license, the terms of which are specified in the file `License.txt`.
 
 Thanks!
