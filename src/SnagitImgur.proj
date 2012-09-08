@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<SolutionDirectory>.\</SolutionDirectory>
-		<BuildDirectory>$(SolutionDirectory)..\build</BuildDirectory>
+		<BuildDirectory>$(SolutionDirectory)..\output</BuildDirectory>
 	</PropertyGroup>
 
 	 <Target Name="QuickBuild">
