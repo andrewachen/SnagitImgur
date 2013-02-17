@@ -15,7 +15,7 @@
    
    <Target Name="ILMerge">
     <MakeDir Directories="$(BuildDirectory)\Merged" />
-    <Exec Command="tools\ilmerge\ILMerge.exe /keyfile:SnagitImgur.snk /lib:&quot;$(BuildDirectory)\Release&quot; /t:library /v2 /out:$(BuildDirectory)\Merged\SnagitImgur.dll $(BuildDirectory)\Release\SnagitImgur.dll $(BuildDirectory)\Release\Interop.SNAGITLib.dll" />
+    <Exec Command="tools\ILRepack.exe /keyfile:SnagitImgur.snk /lib:&quot;$(BuildDirectory)\Release&quot; /t:library /v2 /out:$(BuildDirectory)\Merged\SnagitImgur.dll $(BuildDirectory)\Release\SnagitImgur.dll $(BuildDirectory)\Release\Interop.SNAGITLib.dll" />
     <Copy SourceFiles="$(BuildDirectory)\Merged\SnagitImgur.dll" DestinationFiles="$(BuildDirectory)\Release\SnagitImgur.dll" />
     <Copy SourceFiles="$(BuildDirectory)\Merged\SnagitImgur.pdb" DestinationFiles="$(BuildDirectory)\Release\SnagitImgur.pdb" />
     <Delete Files="$(BuildDirectory)\Release\Interop.SNAGITLib.dll" />

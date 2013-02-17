@@ -16,7 +16,7 @@ namespace SnagitImgur
 
         public void Output()
         {
-            Action saveImageAction = this.snagitFacade.SaveImage;
+            Action saveImageAction = snagitFacade.SaveImage;
             try
             {
                 IAsyncResult result = saveImageAction.BeginInvoke(null, null);
@@ -28,7 +28,7 @@ namespace SnagitImgur
             catch (Exception e)
             {
                 // todo temp code, replace with proper reporting!
-                MessageBox.Show("An unandled exception occured:\n" + e);
+                MessageBox.Show("An unhandled exception occured:\n" + e);
             }
         }
 
@@ -49,7 +49,7 @@ namespace SnagitImgur
             catch (Exception e)
             {
                 // todo temp code, replace with proper reporting!
-                MessageBox.Show("An unandled exception occured:\n" + e);
+                MessageBox.Show("An unhandled exception occured:\n" + e);
             }
         }
     }
