@@ -1,56 +1,45 @@
 ﻿using System;
 using System.Runtime.InteropServices;
-using System.Windows.Forms;
-
 using SNAGITLib;
-
-using SnagitImgur.Core;
 
 namespace SnagitImgur
 {
     [ClassInterface(ClassInterfaceType.None)]
     [Guid("681D1A5C-A78F-4D27-86A2-A07AAC89B8FE")]
-    public class Plugin : MarshalByRefObject, IComponentInitialize, IOutput
+    public class Plugin : MarshalByRefObject, IComponentInitialize, IOutput, IComponentTerminate
     {
-        private SnagitFacade snagitFacade;
-
-        public void Output()
-        {
-            Action saveImageAction = snagitFacade.SaveImage;
-            try
-            {
-                IAsyncResult result = saveImageAction.BeginInvoke(null, null);
-                if (result.AsyncWaitHandle.WaitOne(TimeSpan.FromSeconds(30)))
-                {
-                    saveImageAction.EndInvoke(result);
-                }
-            }
-            catch (Exception e)
-            {
-                // todo temp code, replace with proper reporting!
-                MessageBox.Show("An unhandled exception occured:\n" + e);
-            }
-        }
+        private ISnagitFacade snagitFacade;
 
         public void InitializeComponent(object pExtensionHost, IComponent pComponent, componentInitializeType initType)
         {
-            try
+            var snagitHost = pExtensionHost as ISnagIt;
+            if (snagitHost == null)
             {
-                var snagitHost = pExtensionHost as ISnagIt;
-                if (snagitHost == null)
-                {
-                    throw new InvalidOperationException("Unable to communicate with Snagit");
-                }
+                throw new InvalidOperationException("Unable to communicate with Snagit");
+            }
 
-                var imgurService = new ImgurService();
-                var temporaryImageProvider = new TemporaryImageProvider(snagitHost);
-                snagitFacade = new SnagitFacade(snagitHost, temporaryImageProvider, imgurService);
-            }
-            catch (Exception e)
-            {
-                // todo temp code, replace with proper reporting!
-                MessageBox.Show("An unhandled exception occured:\n" + e);
-            }
+            var imgurService = new Imgur();
+            var temporaryImageProvider = new TemporaryImageProvider(snagitHost);
+            snagitFacade = new SnagitFacade(snagitHost, temporaryImageProvider, imgurService);
+        }
+
+        public void Output()
+        {
+            // TODO
+            //var viewModel = new UploadViewModel(snagitFacade);
+            //var view = new UploadView
+            //{
+            //    DataContext = viewModel
+            //};
+
+            //view.ShowDialog();
+
+            snagitFacade.SaveImage();
+        }
+
+        public void TerminateComponent(componentTerminateType termType)
+        {
+            
         }
     }
 }

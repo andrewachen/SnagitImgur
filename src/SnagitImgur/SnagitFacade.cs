@@ -1,25 +1,24 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using SNAGITLib;
-using SnagitImgur.Core;
 
 namespace SnagitImgur
 {
-    public class SnagitFacade
+    public class SnagitFacade : ISnagitFacade
     {
         private readonly ISnagItAsyncOutput asyncOutput;
         private readonly ITemporaryImageProvider tempImageProvider;
-        private readonly IImageSharingService imageService;
+        private readonly IImageSharingService imageSharingService;
 
-        public SnagitFacade(ISnagIt snagitHost, ITemporaryImageProvider tempImageProvider, IImageSharingService imageService)
+        public SnagitFacade(ISnagIt snagitHost, ITemporaryImageProvider tempImageProvider, IImageSharingService imageSharingService)
         {
-            this.asyncOutput = snagitHost as ISnagItAsyncOutput;
+            asyncOutput = snagitHost as ISnagItAsyncOutput;
             this.tempImageProvider = tempImageProvider;
-            this.imageService = imageService;
-
+            this.imageSharingService = imageSharingService;
         }
 
-        public void SaveImage()
+        public async void SaveImage()
         {
             using (var tempImage = tempImageProvider.CreateTemporaryImage())
             {
@@ -30,12 +29,9 @@ namespace SnagitImgur
                 }
                 try
                 {
-                    var result = imageService.UploadImage(tempImage.Filename);
+                    string imageUrl = await UploadImageAsync(tempImage);
 
-                    if (!string.IsNullOrEmpty(result.OriginalImage))
-                    {
-                        Process.Start(result.OriginalImage);
-                    }
+                    Process.Start(imageUrl);
                 }
                 finally
                 {
@@ -46,6 +42,13 @@ namespace SnagitImgur
                     }
                 }
             }
+        }
+
+        private async Task<string> UploadImageAsync(ITemporaryImage tempImage)
+        {
+            var result = await imageSharingService.UploadImageAsync(tempImage.Filename);
+
+            return result.upload.links.original;
         }
     }
 }
