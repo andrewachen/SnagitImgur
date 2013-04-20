@@ -1,7 +1,4 @@
-﻿using System.Configuration;
-using System.Linq;
-using System.Reflection;
-using SNAGITLib;
+﻿using SNAGITLib;
 using SimpleInjector;
 using SimpleInjector.Extensions;
 using SnagitImgur.Properties;
@@ -15,7 +12,7 @@ namespace SnagitImgur
             var container = new Container();
 
             container.RegisterSingle<ISnagitHost>(() => new SnagitHost(snagit));
-            container.RegisterSingle(() => new Imgur(Settings.Default.ClientID));
+            container.RegisterSingle<IImageSharingService>(() => new Imgur(Settings.Default.ClientID));
             container.RegisterSingle<ISnagitFacade, SnagitFacade>();
             container.RegisterDecorator(typeof(ISnagitFacade), typeof(SnagitFacadeAsyncDecorator));
 

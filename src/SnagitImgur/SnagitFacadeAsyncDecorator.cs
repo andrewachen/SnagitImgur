@@ -1,6 +1,4 @@
-﻿using SNAGITLib;
-
-namespace SnagitImgur
+﻿namespace SnagitImgur
 {
     public class SnagitFacadeAsyncDecorator : ISnagitFacade
     {

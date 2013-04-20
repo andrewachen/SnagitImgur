@@ -12,6 +12,8 @@ namespace SnagitImgur
         public SnagitHost(ISnagIt snagit)
         {
             this.snagit = snagit;
+
+            // this is supported in Snagit 10 and up.
             asyncOutput = snagit as ISnagItAsyncOutput;
         }
 

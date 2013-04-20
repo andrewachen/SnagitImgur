@@ -6,19 +6,19 @@ namespace SnagitImgur
     public class SnagitFacade : ISnagitFacade
     {
         private readonly ISnagitHost snagitHost;
-        private readonly Imgur imgur;
+        private readonly IImageSharingService service;
 
-        public SnagitFacade(ISnagitHost snagitHost, Imgur imgur)
+        public SnagitFacade(ISnagitHost snagitHost, IImageSharingService service)
         {
             this.snagitHost = snagitHost;
-            this.imgur = imgur;
+            this.service = service;
         }
 
         public async void ShareImage()
         {
             using (ICapturedImage image = snagitHost.GetCapturedImage())
             {
-                ImageInfo imageInfo = await imgur.UploadAsync(image.FileName);
+                ImageInfo imageInfo = await service.UploadAsync(image.FileName);
 
                 Process.Start(imageInfo.Link);
             }

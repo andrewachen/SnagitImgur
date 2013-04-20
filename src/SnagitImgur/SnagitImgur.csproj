@@ -87,8 +87,8 @@
   <ItemGroup>
     <Compile Include="AsyncExtensions.cs" />
     <Compile Include="Bootstrapper.cs" />
-    <Compile Include="CaptureProvider.cs" />
     <Compile Include="ICapturedImage.cs" />
+    <Compile Include="IImageSharingService.cs" />
     <Compile Include="Imgur.cs" />
     <Compile Include="ISnagitFacade.cs" />
     <Compile Include="ISnagitHost.cs" />

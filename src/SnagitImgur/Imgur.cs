@@ -9,7 +9,7 @@ namespace SnagitImgur
     /// <summary>
     /// API wrapper for http://imgur.com API v3
     /// </summary>
-    public class Imgur
+    public class Imgur : IImageSharingService
     {
         private const string apiBaseUrl = "https://api.imgur.com/3/";
         private readonly IRestClient client;
