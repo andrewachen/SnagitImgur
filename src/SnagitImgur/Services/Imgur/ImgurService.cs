@@ -29,8 +29,10 @@ namespace SnagitImgur.Services.Imgur
         /// <exception cref="WebException">Thrown if imgur.com returns any status code other than <see cref="HttpStatusCode.OK"/>.</exception>
         public async Task<ImageInfo> UploadAsync(string imagePath)
         {
+            // http://api.imgur.com/endpoints/image#image-upload
+
             var request = new RestRequest("image", Method.POST);
-            request.AddParameter("image", Convert.ToBase64String(File.ReadAllBytes(imagePath)));
+            request.AddParameter("image", Convert.ToBase64String(File.ReadAllBytes(imagePath)), ParameterType.RequestBody);
 
             dynamic uploadResponse = await client.ExecuteAsyncTask<dynamic>(request, response =>
             {
