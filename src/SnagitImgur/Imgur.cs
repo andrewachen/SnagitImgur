@@ -1,45 +1,53 @@
 using System;
-using System.Collections.Specialized;
 using System.IO;
 using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
+using RestSharp;
 
 namespace SnagitImgur
 {
-    public class Imgur : ImageSharingServiceBase
+    /// <summary>
+    /// API wrapper for http://imgur.com API v3
+    /// </summary>
+    public class Imgur
     {
-        private const string ImgurApiUrl = "http://api.imgur.com/2/upload.json";
-        private const string AnonymousImgurKey = "21b7aa9b01f8462d69d716853bb532d0";
+        private const string apiBaseUrl = "https://api.imgur.com/3/";
+        private readonly IRestClient client;
 
-        private readonly Uri address;
-
-        public Imgur(HttpClient httpClient)
-            : base(httpClient)
+        public Imgur(string clientId)
         {
-            address = new Uri(ImgurApiUrl);
+            client = new RestClient(apiBaseUrl);
+            client.AddDefaultHeader("Authorization", "Client-ID " + clientId);
         }
 
-        public override async Task<dynamic> UploadImageAsync(string fileName)
+        public async Task<ImageInfo> UploadAsync(string imagePath)
         {
-            if (string.IsNullOrEmpty(fileName))
-            {
-                throw new ArgumentNullException("fileName");
-            }
+            var request = new RestRequest("image", Method.POST);
+            request.AddParameter("image", Convert.ToBase64String(File.ReadAllBytes(imagePath)));
 
-            var values = new NameValueCollection
+            dynamic uploadResponse = await client.ExecuteAsyncTask<dynamic>(request, response =>
             {
-                {"key", AnonymousImgurKey},
-                {"image", Convert.ToBase64String(File.ReadAllBytes(fileName))}
+                if (response.StatusCode == HttpStatusCode.OK)
+                {
+                    return new JsonFx.Json.JsonReader().Read(response.Content);
+                }
+
+                throw new WebException(response.Content);
+            });
+
+            return new ImageInfo 
+            {
+                Id = uploadResponse.data.id,
+                Link = uploadResponse.data.link,
+                DeleteHash = uploadResponse.data.deletehash,
             };
-
-
-            var response = await httpClient.PostAsync(address, new ByteArrayContent(File.ReadAllBytes(fileName)));
-            
-            using (var streamReader = new StreamReader(new MemoryStream(response.Content.ReadAsByteArrayAsync().Result)))
-            {
-                return new JsonFx.Json.JsonReader().Read(streamReader);
-            }
         }
+    }
+
+    public class ImageInfo
+    {
+        public string Id { get; set; }
+        public string Link { get; set; }
+        public string DeleteHash { get; set; }
     }
 }

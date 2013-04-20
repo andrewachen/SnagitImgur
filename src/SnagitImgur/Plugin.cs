@@ -18,9 +18,9 @@ namespace SnagitImgur
                 throw new InvalidOperationException("Unable to communicate with Snagit");
             }
 
-            var imgurService = new Imgur();
-            var temporaryImageProvider = new TemporaryImageProvider(snagitHost);
-            snagitFacade = new SnagitFacade(snagitHost, temporaryImageProvider, imgurService);
+            //var imgurService = new Imgur();
+            //var temporaryImageProvider = new TemporaryImageProvider(snagitHost);
+            //snagitFacade = new SnagitFacade(snagitHost, temporaryImageProvider, imgurService);
         }
 
         public void Output()
