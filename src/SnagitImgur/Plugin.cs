@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 using SNAGITLib;
+using SnagitImgur.Services;
 using SnagitImgur.Snagit;
 
 namespace SnagitImgur
@@ -18,13 +20,20 @@ namespace SnagitImgur
             {
                 throw new InvalidOperationException("Unable to communicate with Snagit");
             }
-
+            
             snagitFacade = Bootstrapper.Bootstrap(snagitHost);
         }
 
-        public void Output()
+        public async void Output()
         {
-            snagitFacade.ShareImage();
+            try
+            {
+                await snagitFacade.ShareImage();
+            }
+            catch (Exception e)
+            {
+                ExceptionHandler.HandleException(e);
+            }
         }
     }
 }

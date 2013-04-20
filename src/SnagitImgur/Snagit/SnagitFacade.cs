@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using SnagitImgur.Services;
 using SnagitImgur.Services.Imgur;
 
@@ -16,7 +17,7 @@ namespace SnagitImgur.Snagit
             this.service = service;
         }
 
-        public async void ShareImage()
+        public async Task ShareImage()
         {
             using (ICapturedImage image = snagitHost.GetCapturedImage())
             {

@@ -1,4 +1,6 @@
-﻿namespace SnagitImgur.Snagit
+﻿using System.Threading.Tasks;
+
+namespace SnagitImgur.Snagit
 {
     public class SnagitFacadeAsyncDecorator : ISnagitFacade
     {
@@ -11,19 +13,20 @@
             this.snagitHost = snagitHost;
         }
 
-        public void ShareImage()
+        public async Task ShareImage()
         {
             snagitHost.StartAsyncOutput();
 
             bool isSuccessful = false;
             try
             {
-                snagitFacade.ShareImage();
+                await snagitFacade.ShareImage();
                 isSuccessful = true;
             }
             catch
             {
                 isSuccessful = false;
+                throw;
             }
             finally
             {
