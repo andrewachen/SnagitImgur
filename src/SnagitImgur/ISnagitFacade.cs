@@ -1,7 +1,9 @@
-﻿namespace SnagitImgur
+﻿using System;
+
+namespace SnagitImgur
 {
     public interface ISnagitFacade
     {
-        void SaveImage();
+        void ShareImage();
     }
 }

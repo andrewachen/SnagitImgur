@@ -20,6 +20,12 @@ namespace SnagitImgur
             client.AddDefaultHeader("Authorization", "Client-ID " + clientId);
         }
 
+        /// <summary>
+        /// Uploads the image asynchronously to imgur.com 
+        /// </summary>
+        /// <param name="imagePath">Path to the image file.</param>
+        /// <returns>A <c>Task</c> object containing the <see cref="ImageInfo"/>.</returns>
+        /// <exception cref="WebException">Thrown if imgur.com returns any status code other than <see cref="HttpStatusCode.OK"/>.</exception>
         public async Task<ImageInfo> UploadAsync(string imagePath)
         {
             var request = new RestRequest("image", Method.POST);

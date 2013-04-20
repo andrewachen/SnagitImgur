@@ -1,46 +1,27 @@
 ﻿using System;
 using System.Diagnostics;
-using SNAGITLib;
 
 namespace SnagitImgur
 {
     public class SnagitFacade : ISnagitFacade
     {
-        private readonly ISnagItAsyncOutput asyncOutput;
-        //private readonly ITemporaryImageProvider tempImageProvider;
-        //private readonly IImageService imageService;
+        private readonly ISnagitHost snagitHost;
+        private readonly Imgur imgur;
 
-        public SnagitFacade(ISnagIt snagitHost)
+        public SnagitFacade(ISnagitHost snagitHost, Imgur imgur)
         {
-            asyncOutput = snagitHost as ISnagItAsyncOutput;
-            //this.tempImageProvider = tempImageProvider;
-            //this.imageService = imageService;
+            this.snagitHost = snagitHost;
+            this.imgur = imgur;
         }
 
-        public async void SaveImage()
+        public async void ShareImage()
         {
-            //using (var tempImage = tempImageProvider.CreateTemporaryImage())
-            //{
-            //    if (asyncOutput != null)
-            //    {
-            //        // supported in Snagit v11
-            //        asyncOutput.StartAsyncOutput();
-            //    }
-            //    try
-            //    {
-            //        string imageUrl = await UploadImageAsync(tempImage);
+            using (ICapturedImage image = snagitHost.GetCapturedImage())
+            {
+                ImageInfo imageInfo = await imgur.UploadAsync(image.FileName);
 
-            //        Process.Start(imageUrl);
-            //    }
-            //    finally
-            //    {
-            //        if (asyncOutput != null)
-            //        {
-            //            // supported in Snagit v11
-            //            asyncOutput.FinishAsyncOutput(true);
-            //        }
-            //    }
-            //}
+                Process.Start(imageInfo.Link);
+            }
         }
     }
 }
