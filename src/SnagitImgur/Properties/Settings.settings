@@ -2,11 +2,8 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="SnagitImgur.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="ImgurApiUrl" Type="System.String" Scope="User">
-      <Value Profile="(Default)">http://imgur.com/api/upload.xml</Value>
-    </Setting>
-    <Setting Name="ImgurAnonymousKey" Type="System.String" Scope="User">
-      <Value Profile="(Default)">21b7aa9b01f8462d69d716853bb532d0</Value>
+    <Setting Name="ClientID" Type="System.String" Scope="User">
+      <Value Profile="(Default)">d9c6c0bfd99b470</Value>
     </Setting>
   </Settings>
 </SettingsFile>

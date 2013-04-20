@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("A plugin (\"accessory\") for Techsmith® Snagit® that allows sending captured images to imgur.com")]
 [assembly: AssemblyCompany("Igal Tabachnik")]
 [assembly: AssemblyProduct("Snagit to Imgur")]
-[assembly: AssemblyCopyright("Copyright © Igal Tabachnik 2011-2012")]
+[assembly: AssemblyCopyright("Copyright © Igal Tabachnik 2011-2013")]
 
 [assembly: ComVisible(true)]
 

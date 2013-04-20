@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
-<package id="{EDA9F1DD-85B9-44F6-9D3C-125B2DD1109D}" code="SnagitImgur.dll" dotnet="3.5">
+<package id="{EDA9F1DD-85B9-44F6-9D3C-125B2DD1109D}" code="SnagitImgur.dll" dotnet="4">
   <version>0.1.0.0</version>
   <title>Send to Imgur.com</title>
   <icon>imgur.com.ico</icon>

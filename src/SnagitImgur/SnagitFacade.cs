@@ -1,50 +1,26 @@
 ﻿using System;
 using System.Diagnostics;
-using SNAGITLib;
-using SnagitImgur.Core;
 
 namespace SnagitImgur
 {
-    public class SnagitFacade
+    public class SnagitFacade : ISnagitFacade
     {
-        private readonly ISnagItAsyncOutput asyncOutput;
-        private readonly ITemporaryImageProvider tempImageProvider;
-        private readonly IImageSharingService imageService;
+        private readonly ISnagitHost snagitHost;
+        private readonly IImageSharingService service;
 
-        public SnagitFacade(ISnagIt snagitHost, ITemporaryImageProvider tempImageProvider, IImageSharingService imageService)
+        public SnagitFacade(ISnagitHost snagitHost, IImageSharingService service)
         {
-            this.asyncOutput = snagitHost as ISnagItAsyncOutput;
-            this.tempImageProvider = tempImageProvider;
-            this.imageService = imageService;
-
+            this.snagitHost = snagitHost;
+            this.service = service;
         }
 
-        public void SaveImage()
+        public async void ShareImage()
         {
-            using (var tempImage = tempImageProvider.CreateTemporaryImage())
+            using (ICapturedImage image = snagitHost.GetCapturedImage())
             {
-                if (asyncOutput != null)
-                {
-                    // supported in Snagit v11
-                    asyncOutput.StartAsyncOutput();
-                }
-                try
-                {
-                    var result = imageService.UploadImage(tempImage.Filename);
+                ImageInfo imageInfo = await service.UploadAsync(image.FileName);
 
-                    if (!string.IsNullOrEmpty(result.OriginalImage))
-                    {
-                        Process.Start(result.OriginalImage);
-                    }
-                }
-                finally
-                {
-                    if (asyncOutput != null)
-                    {
-                        // supported in Snagit v11
-                        asyncOutput.FinishAsyncOutput(true);
-                    }
-                }
+                Process.Start(imageInfo.Link);
             }
         }
     }
