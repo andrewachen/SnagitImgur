@@ -2,7 +2,7 @@
 using System.IO;
 using SNAGITLib;
 
-namespace SnagitImgur
+namespace SnagitImgur.Snagit
 {
     public class SnagitHost : ISnagitHost
     {

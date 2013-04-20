@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SnagitImgur
+namespace SnagitImgur.Snagit
 {
     public interface ISnagitFacade
     {

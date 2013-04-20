@@ -3,18 +3,19 @@ using System.IO;
 using System.Net;
 using System.Threading.Tasks;
 using RestSharp;
+using SnagitImgur.Extensions;
 
-namespace SnagitImgur
+namespace SnagitImgur.Services.Imgur
 {
     /// <summary>
     /// API wrapper for http://imgur.com API v3
     /// </summary>
-    public class Imgur : IImageSharingService
+    public class ImgurService : IImageSharingService
     {
         private const string apiBaseUrl = "https://api.imgur.com/3/";
         private readonly IRestClient client;
 
-        public Imgur(string clientId)
+        public ImgurService(string clientId)
         {
             client = new RestClient(apiBaseUrl);
             client.AddDefaultHeader("Authorization", "Client-ID " + clientId);

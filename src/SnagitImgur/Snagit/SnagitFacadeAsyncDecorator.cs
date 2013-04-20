@@ -1,4 +1,4 @@
-﻿namespace SnagitImgur
+﻿namespace SnagitImgur.Snagit
 {
     public class SnagitFacadeAsyncDecorator : ISnagitFacade
     {

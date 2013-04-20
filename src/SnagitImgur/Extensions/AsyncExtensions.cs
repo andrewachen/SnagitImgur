@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using RestSharp;
 
-namespace SnagitImgur
+namespace SnagitImgur.Extensions
 {
     public static class AsyncExtensions
     {

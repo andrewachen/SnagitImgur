@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
+using SnagitImgur.Services.Imgur;
 
-namespace SnagitImgur
+namespace SnagitImgur.Services
 {
     public interface IImageSharingService
     {

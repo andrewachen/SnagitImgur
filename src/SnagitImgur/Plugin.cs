@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using SNAGITLib;
+using SnagitImgur.Snagit;
 
 namespace SnagitImgur
 {

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
+using SnagitImgur.Services;
+using SnagitImgur.Services.Imgur;
 
-namespace SnagitImgur
+namespace SnagitImgur.Snagit
 {
     public class SnagitFacade : ISnagitFacade
     {
